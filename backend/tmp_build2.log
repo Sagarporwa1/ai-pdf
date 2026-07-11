@@ -1,0 +1,5 @@
+﻿yarn run v1.22.22
+$ E:\ai-pdf\node_modules\.bin\tsc --noEmit
+src/shared/retrieval.ts(5,16): error TS7016: Could not find a declaration file for module 'ws'. 'E:/ai-pdf/node_modules/ws/wrapper.mjs' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/ws` if it exists or add a new declaration (.d.ts) file containing `declare module 'ws';`
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

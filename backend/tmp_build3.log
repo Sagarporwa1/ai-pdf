@@ -1,0 +1,7 @@
+﻿yarn run v1.22.22
+$ E:\ai-pdf\node_modules\.bin\tsc --noEmit
+src/shared/retrieval.ts(29,19): error TS2322: Type 'typeof WebSocket' is not assignable to type 'WebSocketLikeConstructor'.
+  Types of parameters 'address' and 'address' are incompatible.
+    Type 'string | URL' is not assignable to type 'null'.
+      Type 'string' is not assignable to type 'null'.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
