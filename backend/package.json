@@ -23,7 +23,7 @@
     "lint:langgraph-json": "node scripts/checkLanggraphPaths.js",
     "lint:all": "yarn lint & yarn lint:langgraph-json",
     "langgraph:dev": "npx @langchain/langgraph-cli dev",
-    "start": "npx @langchain/langgraph-cli dev --host 0.0.0.0"
+    "start": "node -e \"const fs=require('fs'); if(!fs.existsSync('.env')) fs.writeFileSync('.env', '');\" && npx @langchain/langgraph-cli dev --host 0.0.0.0 --port ${PORT:-2024}"
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.23",
