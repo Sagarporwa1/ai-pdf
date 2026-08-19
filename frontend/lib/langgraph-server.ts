@@ -1,22 +1,14 @@
 import { Client } from '@langchain/langgraph-sdk';
 import { LangGraphBase } from './langgraph-base';
 
-// Server client singleton instance
-let clientInstance: LangGraphBase | null = null;
-
 /**
- * Creates or returns a singleton instance of the LangGraph client for server-side use
- * @returns LangGraph Client instance
+ * Creates a LangGraph client for server-side use with dynamic API URL resolution
  */
 export const createServerClient = () => {
-  if (clientInstance) {
-    return clientInstance;
-  }
-
-  const apiUrl = process.env.LANGGRAPH_API_URL || process.env.NEXT_PUBLIC_LANGGRAPH_API_URL;
-  if (!apiUrl) {
-    throw new Error('Neither LANGGRAPH_API_URL nor NEXT_PUBLIC_LANGGRAPH_API_URL is set');
-  }
+  const apiUrl =
+    process.env.LANGGRAPH_API_URL ||
+    process.env.NEXT_PUBLIC_LANGGRAPH_API_URL ||
+    'http://localhost:2024';
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -30,9 +22,5 @@ export const createServerClient = () => {
     defaultHeaders: headers,
   });
 
-  clientInstance = new LangGraphBase(client);
-  return clientInstance;
+  return new LangGraphBase(client);
 };
-
-// Export all methods from the base class instance
-export const langGraphServerClient = createServerClient();
