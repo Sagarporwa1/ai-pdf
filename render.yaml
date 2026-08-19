@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: docmind-ai-backend
+    env: docker
+    dockerfilePath: Dockerfile
+    rootDir: backend
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: HUGGINGFACEHUB_API_TOKEN
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: LANGCHAIN_API_KEY
+        sync: false
+      - key: LANGCHAIN_TRACING_V2
+        value: "true"
+      - key: LANGCHAIN_PROJECT
+        value: "docmind-ai-backend"
+
+  - type: web
+    name: docmind-ai-frontend
+    env: docker
+    dockerfilePath: Dockerfile
+    rootDir: frontend
+    envVars:
+      - key: NEXT_PUBLIC_LANGGRAPH_API_URL
+        fromService:
+          type: web
+          name: docmind-ai-backend
+          property: host
+      - key: LANGGRAPH_INGESTION_ASSISTANT_ID
+        value: "ingestion_graph"
+      - key: LANGGRAPH_RETRIEVAL_ASSISTANT_ID
+        value: "retrieval_graph"

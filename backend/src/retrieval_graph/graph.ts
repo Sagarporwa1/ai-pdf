@@ -87,7 +87,7 @@ async function generateResponse(
 ): Promise<typeof AgentStateAnnotation.Update> {
   const configuration = ensureAgentConfiguration(config);
   const context = formatDocs(state.documents);
-  const model = await loadChatModel(configuration.queryModel);
+  const model = await loadChatModel(configuration.queryModel, 0.5);
   const promptTemplate = RESPONSE_SYSTEM_PROMPT;
 
   const formattedPrompt = await promptTemplate.invoke({

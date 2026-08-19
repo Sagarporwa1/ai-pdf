@@ -4,9 +4,9 @@ type StreamConfigurables = AgentConfiguration;
 type IndexConfigurables = IndexConfiguration;
 
 export const retrievalAssistantStreamConfig: StreamConfigurables = {
-  queryModel: 'groq/llama-3.3-70b-versatile',
+  queryModel: 'google-genai/gemini-3.6-flash',
   retrieverProvider: 'supabase',
-  k: 5,
+  k: 10,
 };
 
 /**

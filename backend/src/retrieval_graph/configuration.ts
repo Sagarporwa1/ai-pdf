@@ -34,6 +34,6 @@ export function ensureAgentConfiguration(
   const baseConfig = ensureBaseConfiguration(config);
   return {
     ...baseConfig,
-    queryModel: configurable.queryModel || 'groq/llama-3.3-70b-versatile',
+    queryModel: configurable.queryModel || 'google-genai/gemini-3.6-flash',
   };
 }
