@@ -13,8 +13,9 @@ export const createServerClient = () => {
     return clientInstance;
   }
 
-  if (!process.env.NEXT_PUBLIC_LANGGRAPH_API_URL) {
-    throw new Error('NEXT_PUBLIC_LANGGRAPH_API_URL is not set');
+  const apiUrl = process.env.LANGGRAPH_API_URL || process.env.NEXT_PUBLIC_LANGGRAPH_API_URL;
+  if (!apiUrl) {
+    throw new Error('Neither LANGGRAPH_API_URL nor NEXT_PUBLIC_LANGGRAPH_API_URL is set');
   }
 
   const headers: Record<string, string> = {
@@ -25,7 +26,7 @@ export const createServerClient = () => {
   }
 
   const client = new Client({
-    apiUrl: process.env.NEXT_PUBLIC_LANGGRAPH_API_URL,
+    apiUrl,
     defaultHeaders: headers,
   });
 

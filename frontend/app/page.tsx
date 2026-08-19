@@ -41,15 +41,20 @@ export default function Home() {
     const initThread = async () => {
       if (threadId) return;
       try {
-        const thread = await client.createThread();
-        setThreadId(thread.thread_id);
+        const response = await fetch('/api/thread', { method: 'POST' });
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Failed to create session');
+        }
+        const data = await response.json();
+        setThreadId(data.thread_id);
       } catch (error) {
         console.error('Error creating thread:', error);
         toast({
           title: 'Connection Error',
           description:
-            'Could not establish a session. Make sure LANGGRAPH_API_URL is set correctly. ' +
-            error,
+            'Could not establish a session. Make sure NEXT_PUBLIC_LANGGRAPH_API_URL is set in Vercel. ' +
+            (error instanceof Error ? error.message : String(error)),
           variant: 'destructive',
         });
       }
