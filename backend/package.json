@@ -22,7 +22,8 @@
     "lint:fix": "eslint src --fix",
     "lint:langgraph-json": "node scripts/checkLanggraphPaths.js",
     "lint:all": "yarn lint & yarn lint:langgraph-json",
-    "langgraph:dev": "npx @langchain/langgraph-cli dev"
+    "langgraph:dev": "npx @langchain/langgraph-cli dev",
+    "start": "npx @langchain/langgraph-cli dev --host 0.0.0.0"
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.23",
