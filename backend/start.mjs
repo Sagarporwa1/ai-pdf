@@ -1,5 +1,5 @@
-import { execSync, spawn } from 'child_process';
 import { existsSync, writeFileSync } from 'fs';
+import { spawn } from 'child_process';
 
 // Ensure .env file exists (Render doesn't provide a .env file)
 if (!existsSync('.env')) {
@@ -14,9 +14,9 @@ const host = '0.0.0.0';
 console.log(`[start] Starting LangGraph server on ${host}:${port}`);
 
 const cli = spawn(
-  'node',
+  'npx',
   [
-    'node_modules/@langchain/langgraph-cli/dist/cli/cli.mjs',
+    '@langchain/langgraph-cli',
     'dev',
     '--host', host,
     '--port', port,
@@ -24,7 +24,7 @@ const cli = spawn(
   ],
   {
     stdio: 'inherit',
-    shell: false,
+    shell: true, // needed for npx on all platforms
     env: process.env,
   },
 );
